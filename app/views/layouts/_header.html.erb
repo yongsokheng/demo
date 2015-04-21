@@ -1,7 +1,7 @@
-<header class="navbar navbar-fixed-top navbar-default" role="navigation">
+<header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
-        <!--<%= link_to "Demo", root_path, class: "navbar-brand" %>-->
-         <a class="navbar-brand" href=""><%= image_tag 'logo.png' %></a>
+        <%= link_to "Demo BLOG", root_path, id: "logo" %>
+         
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home",   root_path %></li>
@@ -21,8 +21,10 @@
                 </ul>
               </li>
           <% else %>
-              <li><%= link_to "Signup", signup_path %></li>
+              <li><%= button_to "Sign up", signup_path, :method => "get", 
+                                class: 'btn btn-primary btn-signup' %></li>
               <li><%= link_to "Log in", login_path %></li>
+             
           <% end %>
 
           </ul>

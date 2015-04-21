@@ -15,6 +15,8 @@ $gray-medium-light: #eaeaea;
 
 body {
   padding-top: 60px;
+  background-color: #E7E7E7;
+
 }
 
 section {
@@ -188,6 +190,11 @@ input {
   }
 }
 
+.btn-signup{
+ margin-top:10px;
+  
+}
+
 #session_remember_me {
   width: auto;
   margin-left: 0;
@@ -290,4 +297,20 @@ span.picture {
   padding: 0;
 }
 
+/*Entry */
+.entry{
+ border: 1px solid #B9B9B9;
+ background-color: #FFFFFF;
+ margin: 10px 0px 10px 0px;
+ padding: 10px 10px 10px 10px;
+
+  .entry-avatar{
+    clear: both;
+    margin: 10px 0px 20px 0px;
+  .entry-timespan{
+    color: #858584;
+  }
+ }
+
+}
 

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user=User.find(params[:id])
-		
+		@entry=Entry.new
 	end
 
 	def create

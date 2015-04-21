@@ -62,4 +62,6 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new'
 
   resources :users
+  resources :entries
+  resources :comments
 end
