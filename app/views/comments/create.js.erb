@@ -1,0 +1,6 @@
+<% if @comment.errors.any? %>
+	alert('Comment cannot be blank')
+<% else %>
+	$(".comment").append("<%= escape_javascript(render 'comments/comment_ajax') %>");
+	$('#comment_comment').val('');
+<% end %>

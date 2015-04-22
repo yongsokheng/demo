@@ -1,7 +1,10 @@
 class EntriesController < ApplicationController
+	before_action :login_user, only: [:create, :edit, :update, :destroy]
+	before_action :correct_user, only: [:edit, :update, :destroy]
+
 	def create
 		@entry=current_user.entries.build(entry_params)
-		@entry.save # true or false
+		@entry.save
 		@post=Entry.first
 		
 		# if @entry.save
@@ -15,10 +18,12 @@ class EntriesController < ApplicationController
 	end
 
 	def show
-		@entry=current_user.entries.find(params[:id])
-		@comment=@entry.comments.build
-		@comments=Comment.where("user_id=? and entry_id=?", current_user,params[:id])
+
+		@entry=Entry.find_by(id: params[:id])
+		@comment=Comment.new
+		@comments=Comment.where("entry_id=?", params[:id])
 		store_location
+		
 	end
 
 	def destroy
@@ -46,6 +51,19 @@ class EntriesController < ApplicationController
 	private
 		def entry_params
 			params.require(:entry).permit(:title,:body)
+			
+		end
+
+		def login_user
+			unless logged_in?
+				flash[:danger] = "Please log in."
+				redirect_to login_url
+			end	
+		end
+
+		def correct_user
+			entry=current_user.entries.find_by(id: params[:id])
+			redirect_to root_url if entry.nil?
 			
 		end
 end

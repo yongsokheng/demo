@@ -3,7 +3,7 @@
   <div class='col-md-8 col-md-offset-2'>
      <% if logged_in? %>
         <div class='errors'></div>
-        <%= render 'shared/entry_post' %>
+        <div class='clearfix'><%= render 'shared/entry_post', object: true %></div>
         <div class='feeds'><%= render @entries %></div>
         <%= will_paginate @entries %>
     <% else %>

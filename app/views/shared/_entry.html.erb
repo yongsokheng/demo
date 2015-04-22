@@ -1,4 +1,4 @@
-<div id="entry-<%= @entry.id %>" class='entry'>
+<div id="entry-<%= @entry.user_id %>" class='entry'>
   <div class='entry-avatar'>
     <%= link_to gravatar_for(@entry.user, size: 50), @entry.user %>
     <span class="user"><%= link_to @entry.user.name, @entry.user %></span><br/>

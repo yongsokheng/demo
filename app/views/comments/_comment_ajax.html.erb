@@ -1,0 +1,19 @@
+<div class="media comment-list">
+  <div class="media-left media-middle">
+     <%= link_to gravatar_for(current_user , size: 50), current_user %>
+  </div>
+  <div class="media-body">
+     <div class="user"><%= link_to current_user.name, current_user %></div>
+	 <div class="user"><%= @post_comment.comment %></div>
+	 <div class="entry-timespan"><%= time_ago_in_words(@post_comment.created_at) %></div>
+     <div>
+     	<% if current_user?(@post_comment.user) %>
+	      <%= link_to "Delete", @post_comment, method: :delete,
+	                                       data: { confirm: "You sure?" } %>
+	      <%= link_to 'Edit', edit_comment_path(@post_comment.id) %>
+	 	<% end %>
+     </div>
+     
+
+ </div>
+</div>
