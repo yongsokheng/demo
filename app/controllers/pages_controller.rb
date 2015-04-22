@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 		@entry=Entry.new
 		if logged_in? 
 			@entries=current_user.entries.all
-			store_location
+			#store_location
 		end
 		
 	end
