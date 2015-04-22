@@ -1,13 +1,16 @@
 class EntriesController < ApplicationController
 	def create
 		@entry=current_user.entries.build(entry_params)
-		if @entry.save
-			flash[:success]='Entry posted.'
-			redirect_to root_url
-		else
-			@entries=[]
-			render 'pages/home'
-		end
+		@entry.save # true or false
+		@post=Entry.first
+		
+		# if @entry.save
+		# 	flash[:success]='Entry posted.'
+		# 	redirect_to root_url
+		# else
+		# 	@entries=current_user.feed.paginate(page: params[:page])
+		# 	render 'pages/home'
+		# end
 		
 	end
 

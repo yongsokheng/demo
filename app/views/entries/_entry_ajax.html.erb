@@ -1,0 +1,24 @@
+<div id="entry-<%= @post.id %>" class='entry'>
+  <div class='entry-avatar'>
+    <%= link_to gravatar_for(@post.user, size: 50), @post.user %>
+    <span class="user"><%= link_to @post.user.name, @post.user %></span><br/>
+    <span class="entry-timespan"><%= time_ago_in_words(@post.created_at) %></span>
+  </div>
+  
+  <div class="content">
+    <%= @post.title %><br/>
+    <%= @post.body %>
+  </div>
+    
+  <div>
+    <% if current_user?(@post.user) %>
+      <%= link_to "Delete", @post, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+      <%= link_to 'Edit', edit_entry_path(@post.id) %>
+      <% comment_count=comment_count(current_user.id,@post.id) %>
+      <%= link_to "Comment (#{comment_count})", @post %>
+    <% end %>
+    
+  </div>
+
+</div>

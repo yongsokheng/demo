@@ -1,12 +1,20 @@
 class UsersController < ApplicationController
+
+	def index
+		@users=User.paginate(page: params[:page])
+	end
+
 	def new
 		@user=User.new
 		
 	end
 
+	# ajax jquery
+
 	def show
 		@user=User.find(params[:id])
 		@entry=Entry.new
+		@entries=@user.feed.paginate(page: params[:page])
 	end
 
 	def create
@@ -20,6 +28,20 @@ class UsersController < ApplicationController
 	  	end	
 		
 	end
+
+	def following
+	    @title = "Following"
+	    @user  = User.find(params[:id])
+	    @users = @user.following.paginate(page: params[:page])
+	    render 'show_follow'
+  	end
+
+  	def followers
+	    @title = "Followers"
+	    @user  = User.find(params[:id])
+	    @users = @user.followers.paginate(page: params[:page])
+	    render 'show_follow'
+  	end
 
   private
 

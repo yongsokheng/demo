@@ -1,0 +1,6 @@
+<% if @entry.errors.any? %>
+	$(".errors").html("<%= escape_javascript(render 'shared/error_messages', object: @entry) %>")
+<% else %>
+	$(".errors").html('');
+	$(".feeds").prepend("<%= escape_javascript(render 'entries/entry_ajax') %>")
+<% end %>
