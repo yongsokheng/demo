@@ -59,4 +59,10 @@ module SessionsHelper
     session[:forwarding_url] = request.url if request.get?
   end
 
+  def comment_count(user_id,entry_id)
+    comment=Comment.where("user_id=? and entry_id=?",user_id, entry_id)
+    comment.count
+  end
+
+
 end

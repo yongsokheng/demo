@@ -1,16 +1,15 @@
 <%= provide(:title,'Home') %>
 <div class='row'>
-	<div class='col-md-8 col-md-offset-2'>
-    	<%= render 'shared/entry_post' %>
+  <div class='col-md-8 col-md-offset-2'>
+     <% if logged_in? %>
+        <%= render 'shared/entry_post' %>
+            <div class='feeds'>
+        	 <%= render @entries %>
+            </div>
+        <% else %>
+          <p>Welcome</p>
+     <% end %>
 
-    	<div class='feeds'>
-    		<% if @entries.any? %>
-    			<%= render @entries %>
-    		<% else %>
-    			<p>No entry</p>
-    		<% end %>
-    	</div>
-
-	</div>
+   </div>
 	
 </div>

@@ -1,0 +1,23 @@
+<div id="entry-<%= @entry.id %>" class='entry'>
+  <div class='entry-avatar'>
+    <%= link_to gravatar_for(@entry.user, size: 50), @entry.user %>
+    <span class="user"><%= link_to @entry.user.name, @entry.user %></span><br/>
+    <span class="entry-timespan"><%= time_ago_in_words(@entry.created_at) %></span>
+  </div>
+  
+  <div class="content">
+    <%= @entry.title %><br/>
+    <%= @entry.body %>
+  </div>
+    
+  <div>
+    <% if current_user?(@entry.user) %>
+      <%= link_to "Delete", @entry, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+      <%= link_to 'Edit', edit_entry_path(@entry.id) %>
+    <% end %>
+    
+  </div>
+
+</div>
+

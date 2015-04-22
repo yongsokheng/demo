@@ -15,12 +15,10 @@
       <%= link_to "Delete", entry, method: :delete,
                                        data: { confirm: "You sure?" } %>
       <%= link_to 'Edit', edit_entry_path(entry.id) %>
+      <% comment_count=comment_count(current_user.id,entry.id) %>
+      <%= link_to "Comment (#{comment_count})", entry %>
     <% end %>
     
-  </div>
-
-  <div class='entry-comment'>
-      <%=render 'shared/comment_form' %>
   </div>
 
 </div>

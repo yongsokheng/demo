@@ -307,10 +307,22 @@ span.picture {
   .entry-avatar{
     clear: both;
     margin: 10px 0px 20px 0px;
-  .entry-timespan{
-    color: #858584;
-  }
  }
 
 }
 
+.entry-timespan{
+    color: #858584;
+  }
+
+.entry-comment{
+ border: 1px solid #B9B9B9;
+ background-color: #FFFFFF;
+ margin: 10px 0px 10px 0px;
+ padding: 10px 10px 10px 10px;
+}
+.comment-list{
+  border-bottom: 1px solid #B9B9B9;
+  margin:20px 0px 20px 0px;
+  padding:10px 0px 10px 0px;
+}
