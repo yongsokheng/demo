@@ -2,11 +2,11 @@
   <div class='entry-avatar'>
     <%= link_to gravatar_for(entry.user, size: 50), entry.user %>
     <span class="user"><%= link_to entry.user.name, entry.user %></span><br/>
-    <span class="entry-timespan"><%= time_ago_in_words(entry.created_at) %></span>
+    <span class="entry-timespan"><%= entry.created_at.strftime("%d-%B-%Y at %T") %></span>
   </div>
   
   <div class="content">
-    <%= entry.title %><br/>
+    <b>Title: <%= entry.title %></b><br/>
     <%= entry.body %>
   </div>
     
@@ -16,8 +16,10 @@
                                        data: { confirm: "You sure?" } %>
       <%= link_to 'Edit', edit_entry_path(entry.id) %>
     <% end %>
+
       <% comment_count=entry.comments.count %>
-      <%= link_to "Comment (#{comment_count})", entry %>    
+      <%= link_to "Comment (#{comment_count})", entry %>
+   
   </div>
 
 </div>

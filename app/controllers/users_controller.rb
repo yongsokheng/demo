@@ -5,7 +5,12 @@ class UsersController < ApplicationController
 	end
 
 	def new
-		@user=User.new
+		if logged_in?
+			redirect_to root_url
+		else
+			@user=User.new
+		end
+		
 		
 	end
 
@@ -22,6 +27,7 @@ class UsersController < ApplicationController
 
 	  	if @user.save
 	  		flash[:success]="Account created"
+	  		log_in @user
 	  		redirect_to root_url
 	  	else
 	  		render 'new'

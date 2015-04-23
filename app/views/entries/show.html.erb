@@ -1,11 +1,17 @@
+<%= provide(:title, @entry.title) %>
 <div class='row'>
 	<div class='col-md-8 col-md-offset-2'>
 		<%=render 'shared/entry' %>
 
 		<div class='entry-comment'>
-	    	<div class='clearfix'><%=render 'shared/comment_form', object: true %></div>
+			 <% if logged_in? && (current_user?(@entry.user) || current_user.following?(@entry.user)) %>
+			 	<div class='clearfix'><%=render 'shared/comment_form', object: true %></div>
+			 <% else %>	
+			   <div class='alert alert-warning'>You aren't allowed to make comment.</div>
+			 <% end %>	
+			<h4>Comment</h4>
 	    	<div class='comment'><%=render @comments %></div>
-	     	
+	     	<%= will_paginate @comments %>
 		</div>
 	</div>
 

@@ -1,14 +1,24 @@
 <%= provide(:title,'Home') %>
 <div class='row'>
-  <div class='col-md-8 col-md-offset-2'>
-     <% if logged_in? %>
+  <% if logged_in? %>
+     <div class='col-md-8 col-md-offset-2'>
         <div class='errors'></div>
         <div class='clearfix'><%= render 'shared/entry_post', object: true %></div>
         <div class='feeds'><%= render @entries %></div>
         <%= will_paginate @entries %>
-    <% else %>
-        <p>Welcome</p>
-    <% end %>
+     </div>    
+  <% else %>
+      <div class='col-md-8'>
+         <div class="jumbotron">
+            <h3>Welcome</h3>
+            <p>Connect with your friends</p>
+            <p><%= button_to 'Sign up now', signup_path, method: 'get', class: 'btn btn-primary' %></p>
+         </div>  
+      </div>
+      <div class='col-md-4 signup-form'>
+        <%= render 'shared/signup' %>
+      </div>
+       
+  <% end %>
 
-   </div>
 </div>

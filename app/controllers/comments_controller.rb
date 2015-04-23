@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+	before_action :login_user, only: [:create, :edit, :update, :destroy]
+	before_action :correct_user, only: [:edit, :update, :destroy]
+
 	def create
 		@comment=current_user.comments.build(comment_params)
 		@comment.save
@@ -37,4 +40,18 @@ class CommentsController < ApplicationController
 			params.require(:comment).permit(:comment)
 			
 		end
+
+		def login_user
+			unless logged_in?
+				flash[:danger] = "Please log in."
+				redirect_to login_url
+			end	
+		end
+
+		def correct_user
+			comment=current_user.comments.find_by(id: params[:id])
+			redirect_to root_url if comment.nil?
+			
+		end
+
 end

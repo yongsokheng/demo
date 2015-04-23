@@ -21,7 +21,7 @@ class EntriesController < ApplicationController
 
 		@entry=Entry.find_by(id: params[:id])
 		@comment=Comment.new
-		@comments=Comment.where("entry_id=?", params[:id])
+		@comments=Comment.where("entry_id=?", params[:id]).paginate(page: params[:page])
 		store_location
 		
 	end
@@ -66,4 +66,6 @@ class EntriesController < ApplicationController
 			redirect_to root_url if entry.nil?
 			
 		end
+
+		
 end
