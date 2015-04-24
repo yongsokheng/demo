@@ -1,25 +1,26 @@
-<div id="entry-<%= entry.id %>" class='entry'>
+<div id="entry-<%= entry.id %>">
+ <div class='entry'>
   <div class='entry-avatar'>
     <%= link_to gravatar_for(entry.user, size: 50), entry.user %>
     <span class="user"><%= link_to entry.user.name, entry.user %></span><br/>
     <span class="entry-timespan"><%= entry.created_at.strftime("%d-%B-%Y at %T") %></span>
   </div>
   
-  <div class="content">
+  <div class="content-<%= entry.id %> clearfix">
     <b>Title: <%= entry.title %></b><br/>
     <%= entry.body %>
   </div>
     
   <div>
     <% if current_user?(entry.user) %>
-      <%= link_to "Delete", entry, method: :delete,
+      <%= link_to "Delete", entry, remote: true, method: :delete,
                                        data: { confirm: "You sure?" } %>
-      <%= link_to 'Edit', edit_entry_path(entry.id) %>
+      <%= link_to 'Edit', edit_entry_path(entry.id), remote: true %>
     <% end %>
 
       <% comment_count=entry.comments.count %>
       <%= link_to "Comment (#{comment_count})", entry %>
    
   </div>
-
+ </div> 
 </div>

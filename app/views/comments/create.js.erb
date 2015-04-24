@@ -1,6 +1,7 @@
 <% if @comment.errors.any? %>
-	alert('Comment cannot be blank')
+	 $('.errors').html("<%= escape_javascript( render 'shared/error_messages', object: @comment) %>")
 <% else %>
+	$('.errors').html('')
 	$(".comment").append("<%= escape_javascript(render 'comments/comment_ajax') %>");
 	$('#comment_comment').val('');
 <% end %>

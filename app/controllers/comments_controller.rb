@@ -5,13 +5,11 @@ class CommentsController < ApplicationController
 	def create
 		@comment=current_user.comments.build(comment_params)
 		@comment.save
-		@post_comment=Comment.last
+
 	end
 
 	def destroy
-		comment=Comment.find(params[:id]).destroy
-		flash.now[:success]='Comment deleted'
-		redirect_to request.referrer || root_url
+		@comment=Comment.find(params[:id]).destroy
 		
 	end
 
@@ -22,12 +20,13 @@ class CommentsController < ApplicationController
 
 	def update
 		@comment=Comment.find(params[:id])
-		if @comment.update_attributes(comment_param)
-			flash[:success]='Comment update'
-			redirect_back_or(root_url)
-		else
-			render 'edit'
-		end
+		@comment.update_attributes(comment_param)
+			
+	end
+
+	def cancel
+		@comment=Comment.find(params[:id])
+		
 	end
 
 	private

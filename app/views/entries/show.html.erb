@@ -5,7 +5,8 @@
 
 		<div class='entry-comment'>
 			 <% if logged_in? && (current_user?(@entry.user) || current_user.following?(@entry.user)) %>
-			 	<div class='clearfix'><%=render 'shared/comment_form', object: true %></div>
+			 	<div class='errors'></div>
+			 	<div class='clearfix'><%=render 'shared/comment_form', status: 'post' %></div>
 			 <% else %>	
 			   <div class='alert alert-warning'>You aren't allowed to make comment.</div>
 			 <% end %>	

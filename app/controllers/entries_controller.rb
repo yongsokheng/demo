@@ -5,7 +5,6 @@ class EntriesController < ApplicationController
 	def create
 		@entry=current_user.entries.build(entry_params)
 		@entry.save
-		@post=Entry.first
 		
 		# if @entry.save
 		# 	flash[:success]='Entry posted.'
@@ -22,15 +21,16 @@ class EntriesController < ApplicationController
 		@entry=Entry.find_by(id: params[:id])
 		@comment=Comment.new
 		@comments=Comment.where("entry_id=?", params[:id]).paginate(page: params[:page])
-		store_location
 		
 	end
 
 	def destroy
-		entry=Entry.find(params[:id]).destroy
-		flash.now[:success]="Post deleted"
-		redirect_to request.referrer || root_url
-
+		@entry=Entry.find(params[:id]).destroy
+		respond_to do |format|
+			format.html { redirect_to root_url}
+			format.js {}
+		end
+		
 	end
 
 	def edit
@@ -39,12 +39,13 @@ class EntriesController < ApplicationController
 
 	def update
 		@entry=Entry.find(params[:id])
-		if @entry.update_attributes(entry_params)
-			redirect_back_or(root_url)
-		else
-			render 'edit'
-		end
+		@entry.update_attributes(entry_params)	
 
+	end
+
+	def cancel
+		@entry=Entry.find(params[:id])
+		
 	end
 
 	private

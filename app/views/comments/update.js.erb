@@ -1,0 +1,6 @@
+<% if @comment.errors.any? %>
+   $('.errors-<%= @comment.id %>').html("<%= escape_javascript( render 'shared/error_messages', object: @comment) %>")
+<% else %>
+	$('.errors-<%= @comment.id %>').html('')
+	$('.comment-<%= @comment.id %>').html("<%= @comment.comment %>")
+<% end %>

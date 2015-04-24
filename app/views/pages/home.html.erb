@@ -2,8 +2,7 @@
 <div class='row'>
   <% if logged_in? %>
      <div class='col-md-8 col-md-offset-2'>
-        <div class='errors'></div>
-        <div class='clearfix'><%= render 'shared/entry_post', object: true %></div>
+        <div class='clearfix'><%= render 'shared/entry_post', status: 'post' %></div>
         <div class='feeds'><%= render @entries %></div>
         <%= will_paginate @entries %>
      </div>    

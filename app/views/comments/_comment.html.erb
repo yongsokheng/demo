@@ -1,19 +1,23 @@
-<div class="media comment-list">
-  <div class="media-left media-middle">
-     <%= link_to gravatar_for(comment.user , size: 50), comment.user %>
-  </div>
-  <div class="media-body">
-     <div class="user"><%= link_to comment.user.name, comment.user %></div>
-	 <div class="user"><%= comment.comment %></div>
-	 <div class="entry-timespan"><%= comment.created_at.strftime("%d-%B-%Y at %T") %></div>
-     <div>
-     	<% if current_user?(comment.user) %>
-	      <%= link_to "Delete", comment, method: :delete,
-	                                       data: { confirm: "You sure?" } %>
-	      <%= link_to 'Edit', edit_comment_path(comment.id) %>
-	 	<% end %>
-     </div>
-     
+<div id='comment-<%= comment.id %>'>
 
- </div>
+  <div class="media comment-list">
+    <div class="media-left media-middle">
+       <%= link_to gravatar_for(comment.user , size: 50), comment.user %>
+    </div>
+    <div class="media-body">
+       <div class="user"><%= link_to comment.user.name, comment.user %></div>
+       <div class='errors-<%= comment.id %>'></div>
+       <div class="comment-<%= comment.id %>"><%= comment.comment %></div>
+       <div class="entry-timespan"><%= comment.created_at.strftime("%d-%B-%Y at %T") %></div>
+         <div>
+          <% if current_user?(comment.user) %>
+            <%= link_to "Delete",comment, remote: true, method: :delete,
+                                             data: { confirm: "You sure?" } %>
+            <%= link_to 'Edit', edit_comment_path(comment.id), remote: true %>
+        <% end %>
+         </div>
+       
+    </div>
+  </div>
+  
 </div>

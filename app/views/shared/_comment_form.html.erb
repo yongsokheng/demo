@@ -1,7 +1,12 @@
-<%= form_for(@comment, remote: object) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
+<%= form_for(@comment,remote: true) do |f| %>
 	<%= f.hidden_field :entry_id, value: params[:id] %>
 	<%= f.text_area :comment,cols: "30", rows: "5",
 					 class: 'form-control', placeholder: 'write your comment ...' %>
-	<%= f.submit 'Comment', class: 'btn btn-primary pull-right' %>
+	<% if status=='post' %>
+  	 	 <%= f.submit "Comment", class: "btn btn-primary pull-right" %>
+  	<% else %>
+	  	 <%= f.submit "Update", class: "btn btn-primary pull-right" %>
+	  	 <%= link_to 'Cancel',cancel_comment_path(@comment), class: 'pull-right cancel-link', remote: true %>
+  	<% end %>
+ 
 <% end %>

@@ -71,6 +71,18 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :entries do
+    member do
+      get :cancel
+    end
+  end
+
+  resources :comments do
+    member do
+      get :cancel
+    end
+  end
+
   resources :relationships, only: [:create, :destroy]
 
 end

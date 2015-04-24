@@ -1,19 +1,21 @@
-<div class="media comment-list">
+<div id='comment-<%= @comment.id %>'>
+ <div class="media comment-list">
   <div class="media-left media-middle">
      <%= link_to gravatar_for(current_user , size: 50), current_user %>
   </div>
   <div class="media-body">
      <div class="user"><%= link_to current_user.name, current_user %></div>
-	 <div class="user"><%= @post_comment.comment %></div>
-	  <div class="entry-timespan"><%= @post_comment.created_at.strftime("%d-%B-%Y at %T") %></div>
-     <div>
-     	<% if current_user?(@post_comment.user) %>
-	      <%= link_to "Delete", @post_comment, method: :delete,
-	                                       data: { confirm: "You sure?" } %>
-	      <%= link_to 'Edit', edit_comment_path(@post_comment.id) %>
-	 	<% end %>
-     </div>
+     <div class='errors-<%= @comment.id %>'></div>
+     <div class="comment-<%= @comment.id %>"><%= @comment.comment %></div>
+     <div class="entry-timespan"><%= @comment.created_at.strftime("%d-%B-%Y at %T") %></div>
+       <div>
+        <% if current_user?(@comment.user) %>
+          <%= link_to "Delete",@comment, remote: true, method: :delete,
+                                           data: { confirm: "You sure?" } %>
+          <%= link_to 'Edit', edit_comment_path(@comment.id), remote: true %>
+      <% end %>
+       </div>
      
-
+  </div>
  </div>
 </div>
