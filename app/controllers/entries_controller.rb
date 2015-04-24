@@ -40,7 +40,6 @@ class EntriesController < ApplicationController
 	def update
 		@entry=Entry.find(params[:id])
 		if @entry.update_attributes(entry_params)
-			flash[:success]='Update success'
 			redirect_back_or(root_url)
 		else
 			render 'edit'
@@ -54,12 +53,6 @@ class EntriesController < ApplicationController
 			
 		end
 
-		def login_user
-			unless logged_in?
-				flash[:danger] = "Please log in."
-				redirect_to login_url
-			end	
-		end
 
 		def correct_user
 			entry=current_user.entries.find_by(id: params[:id])

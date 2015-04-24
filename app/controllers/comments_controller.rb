@@ -41,13 +41,6 @@ class CommentsController < ApplicationController
 			
 		end
 
-		def login_user
-			unless logged_in?
-				flash[:danger] = "Please log in."
-				redirect_to login_url
-			end	
-		end
-
 		def correct_user
 			comment=current_user.comments.find_by(id: params[:id])
 			redirect_to root_url if comment.nil?

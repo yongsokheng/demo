@@ -2,7 +2,7 @@
   <div class='entry-avatar'>
     <%= link_to gravatar_for(@post.user, size: 50), @post.user %>
     <span class="user"><%= link_to @post.user.name, @post.user %></span><br/>
-    <span class="entry-timespan"><%= entry.created_at.strftime("%d-%B-%Y at %T") %></span>
+    <span class="entry-timespan"><%= @post.created_at.strftime("%d-%B-%Y at %T") %></span>
   </div>
   
   <div class="content">
