@@ -11,8 +11,7 @@
        <div class="entry-timespan"><%= comment.created_at.strftime("%d-%B-%Y at %T") %></div>
          <div>
           <% if current_user?(comment.user) %>
-            <%= link_to "Delete",comment, remote: true, method: :delete,
-                                             data: { confirm: "You sure?" } %>
+            <%= link_to "Delete", "#myModal-#{comment.id}", "data-toggle"=>"modal" %>
             <%= link_to 'Edit', edit_comment_path(comment.id), remote: true %>
         <% end %>
          </div>
@@ -21,3 +20,5 @@
   </div>
   
 </div>
+
+ <%= render 'shared/modal_delete', entry: comment, status: true %> 

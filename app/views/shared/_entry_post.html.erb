@@ -1,4 +1,3 @@
-<div class='errors'></div>
 <%= form_for(@entry, remote: true) do |f| %>
   <div class="field">
   	<%= f.text_field :title, class: 'form-control', placeholder: 'Title' %>
@@ -8,7 +7,7 @@
   <% if status=='post' %>
   	 <%= f.submit "Post", class: "btn btn-primary pull-right" %>
   <% else %>
-  	 <%= f.submit "Update", class: "btn btn-primary pull-right" %>
+  	 <%= f.submit "Save", class: "btn btn-primary pull-right" %>
   	 <%= link_to 'Cancel',cancel_entry_path(@entry), class: 'pull-right cancel-link', remote: true %>
   <% end %>
  

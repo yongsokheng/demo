@@ -6,6 +6,7 @@
     <span class="entry-timespan"><%= @entry.created_at.strftime("%d-%B-%Y at %T") %></span>
   </div>
   
+  <div class='errors-<%= @entry.id %>'></div>
   <div class="content-<%= @entry.id %> clearfix">
     <b>Title: <%= @entry.title %></b><br/>
     <%= @entry.body %>
@@ -13,10 +14,11 @@
     
   <div>
     <% if current_user?(@entry.user) %>
-      <%= link_to "Delete", @entry, method: :delete,
-                                       data: { confirm: "You sure?" } %>
+      <%= link_to "Delete", "#myModal-#{@entry.id}", "data-toggle"=>"modal" %>
       <%= link_to 'Edit', edit_entry_path(@entry.id), remote: true %>
     <% end %>
   </div>
  </div> 
 </div>
+
+<%= render 'shared/modal_delete', entry: @entry, status: false %> 

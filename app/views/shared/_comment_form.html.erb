@@ -5,7 +5,7 @@
 	<% if status=='post' %>
   	 	 <%= f.submit "Comment", class: "btn btn-primary pull-right" %>
   	<% else %>
-	  	 <%= f.submit "Update", class: "btn btn-primary pull-right" %>
+	  	 <%= f.submit "Save", class: "btn btn-primary pull-right" %>
 	  	 <%= link_to 'Cancel',cancel_comment_path(@comment), class: 'pull-right cancel-link', remote: true %>
   	<% end %>
  

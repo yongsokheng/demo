@@ -1,5 +1,6 @@
 <% if @entry.errors.any? %>
-	$('.errors').html("<%= escape_javascript( render 'shared/error_messages', object: @entry) %>")
+	$('.errors-<%= @entry.id %>').html("<%= escape_javascript( render 'shared/error_messages', object: @entry) %>")
 <% else %>
+	$('.errors-<%= @entry.id %>').html('')
 	$('.content-<%= @entry.id %>').html("<%= escape_javascript(render 'entries/entry_ajax_edit') %>")
 <% end %>
